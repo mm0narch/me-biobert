@@ -49,9 +49,16 @@ models=[{
 }]
 
 def train_model(models, X_train, y_train):
+    trained_models=[]
     for model_info in tqdm(models, desc='Training models', unit='model'):
         name=model_info['name']
         model=model_info['model']
+
         model.fit(X_train, y_train)
+        trained_models.append({
+            'name': name, 
+            'model': model
+        }
+    )
     
-    return models
+    return trained_models
